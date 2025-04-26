@@ -6,53 +6,53 @@ import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, DollarSign } from 'lucide-react';
 import WatchlistButton from './WatchlistButton';
 import PriceChart from './PriceChart';
-import { getPriceChange } from '../data/mockData';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const priceChange = getPriceChange(product);
+  const priceChange = ((product.currentPrice - product.initialPrice) / product.initialPrice) * 100;
   const isPriceUp = priceChange > 0;
   const isPriceDown = priceChange < 0;
   
-  // Format price with 2 decimal places and € symbol
   const formatPrice = (price: number) => {
     return price.toFixed(2) + ' €';
   };
   
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative h-48 overflow-hidden">
+    <Card className="overflow-hidden rounded-none border-none hover:shadow-lg transition-shadow">
+      <div className="relative h-[400px] overflow-hidden">
         <img 
           src={product.imageUrl} 
           alt={product.name}
           className="w-full h-full object-cover"
         />
         {product.isNew && (
-          <Badge className="absolute top-2 right-2 bg-forest-light">Nueva Colección</Badge>
+          <Badge className="absolute top-4 right-4 bg-zara-black text-zara-white rounded-none uppercase text-xs tracking-wider">
+            Nueva Colección
+          </Badge>
         )}
         {product.stock < 10 && !product.isNew && (
-          <Badge variant="destructive" className="absolute top-2 right-2">¡Pocas Unidades!</Badge>
+          <Badge variant="destructive" className="absolute top-4 right-4 rounded-none uppercase text-xs tracking-wider">
+            ¡Pocas Unidades!
+          </Badge>
         )}
       </div>
       
-      <CardHeader className="pb-2">
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="font-semibold text-lg leading-tight">{product.name}</h3>
-            <p className="text-sm text-muted-foreground">{product.category} · {product.size} · {product.color}</p>
-          </div>
+      <CardHeader className="pb-2 space-y-4">
+        <div>
+          <h3 className="font-montserrat text-lg tracking-wide">{product.name}</h3>
+          <p className="text-xs text-zara-gray uppercase tracking-wider mt-1">{product.category} · {product.size} · {product.color}</p>
         </div>
       </CardHeader>
       
       <CardContent className="pb-2">
         {!product.isNew ? (
           <div>
-            <div className="flex items-end gap-2 mb-2">
-              <span className="text-2xl font-bold">{formatPrice(product.currentPrice)}</span>
-              <span className="text-sm text-muted-foreground line-through">{formatPrice(product.initialPrice)}</span>
+            <div className="flex items-end gap-4 mb-4">
+              <span className="text-2xl font-montserrat">{formatPrice(product.currentPrice)}</span>
+              <span className="text-sm text-zara-gray line-through">{formatPrice(product.initialPrice)}</span>
               {isPriceUp && (
                 <div className="flex items-center text-price-increase text-sm ml-auto">
                   <TrendingUp className="h-4 w-4 mr-1" />
@@ -71,23 +71,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         ) : (
           <div>
-            <div className="flex items-end gap-2 mb-2">
-              <span className="text-2xl font-bold">{formatPrice(product.currentPrice)}</span>
-              <div className="flex items-center text-price-neutral text-sm ml-auto">
-                <DollarSign className="h-4 w-4 mr-1" />
+            <div className="flex items-end gap-4 mb-4">
+              <span className="text-2xl font-montserrat">{formatPrice(product.currentPrice)}</span>
+              <div className="flex items-center text-price-neutral text-sm ml-auto uppercase tracking-wider">
                 <span>Precio fijo</span>
               </div>
             </div>
-            <div className="h-[100px] flex items-center justify-center bg-gray-50 rounded">
-              <p className="text-muted-foreground text-sm">Precio no variable</p>
+            <div className="h-[100px] flex items-center justify-center bg-zara-lightGray">
+              <p className="text-zara-gray text-xs uppercase tracking-wider">Precio no variable</p>
             </div>
           </div>
         )}
       </CardContent>
       
       <CardFooter className="flex justify-between pt-2">
-        <div className="text-sm">
-          <span className={product.stock < 10 ? "text-price-decrease" : "text-muted-foreground"}>
+        <div className="text-xs uppercase tracking-wider">
+          <span className={product.stock < 10 ? "text-price-decrease" : "text-zara-gray"}>
             {product.stock} en stock
           </span>
         </div>

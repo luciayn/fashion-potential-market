@@ -12,7 +12,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   
-  // Filter products by category and exclude new collection
   const filteredProducts = products.filter(product => {
     if (product.isNew) return false;
     if (selectedCategory) return product.category === selectedCategory;
@@ -20,42 +19,44 @@ const Index = () => {
   });
   
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-zara-white">
       <Navbar />
       
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main content */}
+      <main className="flex-grow container mx-auto px-4 py-12">
+        <div className="flex flex-col lg:flex-row gap-12">
           <div className="flex-grow">
-            <div className="bg-navy rounded-lg p-6 mb-8 text-white">
-              <h1 className="text-3xl font-bold mb-2">Market de Moda</h1>
-              <p className="mb-4 text-gray-300 max-w-2xl">
+            <div className="bg-zara-black rounded-none p-12 mb-12 text-zara-white">
+              <h1 className="text-4xl font-montserrat font-bold mb-6 tracking-wider uppercase">Market de Moda</h1>
+              <p className="mb-8 text-zara-gray max-w-2xl text-sm tracking-wide leading-relaxed">
                 Explora nuestra selección de ropa con precios dinámicos que cambian según la demanda. 
                 Compra cuando los precios sean más bajos o consigue las prendas más populares antes de que suban.
               </p>
-              <div className="flex items-center">
-                <Button className="bg-forest-light hover:bg-forest text-white border-none">
-                  <ChartLine className="mr-2 h-4 w-4" />
-                  Ver Tendencias
-                </Button>
-                <p className="ml-4 text-sm text-gray-300">
-                  Los precios cambian diariamente según la demanda
-                </p>
-              </div>
+              <Button className="bg-zara-white text-zara-black hover:bg-zara-gray border-none rounded-none px-8">
+                <span className="text-xs tracking-wider uppercase">Ver Tendencias</span>
+              </Button>
             </div>
             
-            <Tabs defaultValue="dynamic" className="mb-8">
-              <div className="flex justify-between items-center mb-6">
-                <TabsList>
-                  <TabsTrigger value="dynamic">Precios Dinámicos</TabsTrigger>
-                  <TabsTrigger value="new">Nueva Colección</TabsTrigger>
+            <Tabs defaultValue="dynamic" className="mb-12">
+              <div className="flex justify-between items-center mb-8">
+                <TabsList className="bg-transparent border-b border-zara-black rounded-none w-auto h-auto p-0 space-x-8">
+                  <TabsTrigger 
+                    value="dynamic" 
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-zara-black data-[state=active]:bg-transparent px-0 uppercase text-sm tracking-wider"
+                  >
+                    Precios Dinámicos
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="new"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-zara-black data-[state=active]:bg-transparent px-0 uppercase text-sm tracking-wider"
+                  >
+                    Nueva Colección
+                  </TabsTrigger>
                 </TabsList>
                 
-                {/* Category filter buttons */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-4">
                   <Button 
                     variant={selectedCategory === null ? "default" : "outline"}
-                    size="sm"
+                    className="rounded-none text-xs tracking-wider uppercase"
                     onClick={() => setSelectedCategory(null)}
                   >
                     Todos
@@ -65,7 +66,7 @@ const Index = () => {
                     <Button
                       key={category.id}
                       variant={selectedCategory === category.name ? "default" : "outline"}
-                      size="sm"
+                      className="rounded-none text-xs tracking-wider uppercase"
                       onClick={() => setSelectedCategory(category.name)}
                     >
                       {category.name}
@@ -75,8 +76,7 @@ const Index = () => {
               </div>
               
               <TabsContent value="dynamic" className="mt-0">
-                <h2 className="text-2xl font-bold mb-4">Productos con Precio Variable</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {filteredProducts.map(product => (
                     <ProductCard key={product.id} product={product} />
                   ))}
@@ -89,17 +89,16 @@ const Index = () => {
             </Tabs>
           </div>
           
-          {/* Sidebar */}
           <div className="w-full lg:w-80 space-y-6">
             <TrendingItems />
           </div>
         </div>
       </main>
       
-      <footer className="bg-navy-light py-6 mt-auto">
+      <footer className="bg-zara-black py-8 mt-auto">
         <div className="container mx-auto px-4">
-          <div className="text-center text-white">
-            <p className="text-sm opacity-75">© 2025 Fashion Stock Market · Todos los derechos reservados</p>
+          <div className="text-center text-zara-gray">
+            <p className="text-xs tracking-wider uppercase">© 2025 Fashion Stock Market · Todos los derechos reservados</p>
           </div>
         </div>
       </footer>

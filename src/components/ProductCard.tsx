@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Product } from '../types/types';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, TrendingUp, TrendingDown } from 'lucide-react';
 import WatchlistButton from './WatchlistButton';
 
 interface ProductCardProps {
@@ -13,6 +13,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
   const formatPrice = (price: number) => {
     return price.toFixed(2) + ' EUR';
   };
+
+  const isPriceIncreasing = product.currentPrice > product.initialPrice;
+  const priceChanged = product.currentPrice !== product.initialPrice;
+  
+  const PriceTrend = () => {
+    if (!priceChanged) return null;
+    
+    return (
+      <div className={`inline-flex items-center gap-1 text-xs font-medium ${
+        isPriceIncreasing ? 'text-[#ea384c]' : 'text-[#4CAF50]'
+      }`}>
+        {isPriceIncreasing ? (
+          <TrendingUp className="w-4 h-4" />
+        ) : (
+          <TrendingDown className="w-4 h-4" />
+        )}
+      </div>
+    );
+  };
   
   if (listView) {
     return (
@@ -21,11 +40,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
           <div className="space-y-2">
             <h3 className="font-montserrat text-sm tracking-wide">{product.name}</h3>
             <p className="text-[10px] text-zara-gray uppercase tracking-widest">{product.category}</p>
-            <div className="flex items-baseline gap-4">
+            <div className="flex items-center gap-4">
               <span className="text-lg font-montserrat">{formatPrice(product.currentPrice)}</span>
-              {product.currentPrice !== product.initialPrice && (
+              {priceChanged && (
                 <span className="text-xs text-zara-gray line-through">{formatPrice(product.initialPrice)}</span>
               )}
+              <PriceTrend />
             </div>
           </div>
           
@@ -48,10 +68,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
       <div className="p-4 space-y-2">
         <h3 className="font-montserrat text-sm tracking-wide">{product.name}</h3>
         <p className="text-[10px] text-zara-gray uppercase tracking-widest">{product.category}</p>
-        <div className="flex items-baseline gap-4">
+        <div className="flex items-center gap-4">
           <span className="text-lg font-montserrat">{formatPrice(product.currentPrice)}</span>
-          {product.currentPrice !== product.initialPrice && (
-            <span className="text-xs text-zara-gray line-through">{formatPrice(product.initialPrice)}</span>
+          {priceChanged && (
+            <>
+              <span className="text-xs text-zara-gray line-through">{formatPrice(product.initialPrice)}</span>
+              <PriceTrend />
+            </>
           )}
         </div>
       </div>

@@ -1,23 +1,39 @@
 
 import React from 'react';
+import { Menu, Search, User, ShoppingCart } from 'lucide-react';
 
 const Navbar = () => {
   return (
-    <nav className="bg-zara-white border-b border-zara-black/10 py-6 px-6">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <span className="text-xl font-montserrat font-medium tracking-widest">FASHION MARKET</span>
+    <nav className="fixed top-0 left-0 right-0 bg-zara-white z-50 px-6 py-4">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-6">
+          <Menu className="w-6 h-6 cursor-pointer" />
+          <span className="text-xl font-montserrat tracking-[0.3em] hidden md:block">ZARA MARKET</span>
         </div>
         
-        <div className="flex items-center space-x-12 text-xs tracking-widest">
-          <a href="#" className="hover:text-zara-gray transition-colors uppercase">Productos</a>
-          <a href="#" className="hover:text-zara-gray transition-colors uppercase">Favoritos</a>
-          <a href="#" className="hover:text-zara-gray transition-colors uppercase">Nueva Colección</a>
+        <span className="text-xl font-montserrat tracking-[0.3em] md:hidden">ZARA</span>
+        
+        <div className="flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6">
+            <Search className="w-5 h-5" />
+            <span className="text-xs tracking-widest">BUSCAR</span>
+          </div>
           
-          <div className="border border-zara-black px-8 py-3 hover:bg-zara-black hover:text-zara-white transition-colors duration-300 cursor-pointer">
-            <span className="font-medium tracking-wider text-xs uppercase">Ver Mercado</span>
+          <div className="flex items-center gap-6">
+            <User className="w-5 h-5" />
+            <ShoppingCart className="w-5 h-5" />
           </div>
         </div>
+      </div>
+      
+      <div className="flex items-center justify-start gap-8 mt-8 overflow-x-auto text-xs tracking-widest pb-2">
+        <span className="shrink-0 cursor-pointer">VER TODO</span>
+        <span className="shrink-0 cursor-pointer">MIDI | LARGOS</span>
+        <span className="shrink-0 cursor-pointer">CORTOS</span>
+        <span className="shrink-0 cursor-pointer">MONOS</span>
+        <span className="shrink-0 cursor-pointer">BLANCOS</span>
+        <span className="shrink-0 cursor-pointer">FIESTA</span>
+        <span className="shrink-0 cursor-pointer">SATINADOS</span>
       </div>
     </nav>
   );

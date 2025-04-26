@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Product } from '../types/types';
 import { ChevronRight, TrendingUp, TrendingDown } from 'lucide-react';
 import WatchlistButton from './WatchlistButton';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Product;
@@ -10,12 +10,18 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
+  const navigate = useNavigate();
+  
   const formatPrice = (price: number) => {
     return price.toFixed(2) + ' EUR';
   };
 
   const isPriceIncreasing = product.currentPrice > product.initialPrice;
   const priceChanged = product.currentPrice !== product.initialPrice;
+  
+  const handleClick = () => {
+    navigate(`/product/${product.id}`);
+  };
   
   const PriceTrend = () => {
     if (!priceChanged) return null;
@@ -35,7 +41,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
   
   if (listView) {
     return (
-      <div className="group relative border-t border-zara-black/10 py-6">
+      <div 
+        className="group relative border-t border-zara-black/10 py-6 cursor-pointer"
+        onClick={handleClick}
+      >
         <div className="flex justify-between items-start">
           <div className="space-y-2">
             <h3 className="font-montserrat text-sm tracking-wide">{product.name}</h3>
@@ -56,7 +65,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
   }
   
   return (
-    <div className="group relative">
+    <div 
+      className="group relative cursor-pointer"
+      onClick={handleClick}
+    >
       <div className="aspect-[3/4] overflow-hidden bg-zara-lightGray">
         <img 
           src={product.imageUrl} 

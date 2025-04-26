@@ -1,4 +1,3 @@
-
 import { Product, Category } from '../types/types';
 
 export const categories: Category[] = [
@@ -54,7 +53,7 @@ export const products: Product[] = [
     initialPrice: 19.99,
     currentPrice: 15.99,
     priceHistory: generatePriceHistory(19.99, false),
-    imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1527576539890-dfa815648363',
     stock: 45,
     demand: 3,
     isNew: false,
@@ -68,7 +67,7 @@ export const products: Product[] = [
     initialPrice: 49.99,
     currentPrice: 59.99,
     priceHistory: generatePriceHistory(49.99, false),
-    imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625',
     stock: 28,
     demand: 7,
     isNew: false,

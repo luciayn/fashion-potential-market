@@ -6,7 +6,6 @@ import ProductCard from '../components/ProductCard';
 import TrendingItems from '../components/TrendingItems';
 import NewCollection from '../components/NewCollection';
 import { Button } from '@/components/ui/button';
-import { ChartLine } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const Index = () => {
@@ -25,38 +24,38 @@ const Index = () => {
       <main className="flex-grow container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="flex-grow">
-            <div className="bg-zara-black rounded-none p-12 mb-12 text-zara-white">
-              <h1 className="text-4xl font-montserrat font-bold mb-6 tracking-wider uppercase">Market de Moda</h1>
-              <p className="mb-8 text-zara-gray max-w-2xl text-sm tracking-wide leading-relaxed">
+            <div className="bg-zara-white border border-zara-black/10 p-16 mb-12">
+              <h1 className="text-4xl font-montserrat font-light mb-6 tracking-widest uppercase">Market de Moda</h1>
+              <p className="mb-8 text-zara-charcoal max-w-2xl text-sm tracking-wide leading-relaxed">
                 Explora nuestra selección de ropa con precios dinámicos que cambian según la demanda. 
                 Compra cuando los precios sean más bajos o consigue las prendas más populares antes de que suban.
               </p>
-              <Button className="bg-zara-white text-zara-black hover:bg-zara-gray border-none rounded-none px-8">
-                <span className="text-xs tracking-wider uppercase">Ver Tendencias</span>
+              <Button className="bg-zara-black hover:bg-zara-charcoal text-zara-white border-none rounded-none px-12 py-6 h-auto">
+                <span className="text-xs tracking-widest uppercase">Ver Tendencias</span>
               </Button>
             </div>
             
             <Tabs defaultValue="dynamic" className="mb-12">
-              <div className="flex justify-between items-center mb-8">
-                <TabsList className="bg-transparent border-b border-zara-black rounded-none w-auto h-auto p-0 space-x-8">
+              <div className="flex justify-between items-center mb-12">
+                <TabsList className="bg-transparent border-b border-zara-black/10 rounded-none w-auto h-auto p-0 space-x-12">
                   <TabsTrigger 
                     value="dynamic" 
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-zara-black data-[state=active]:bg-transparent px-0 uppercase text-sm tracking-wider"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-zara-black data-[state=active]:bg-transparent px-0 uppercase text-xs tracking-widest"
                   >
                     Precios Dinámicos
                   </TabsTrigger>
                   <TabsTrigger 
                     value="new"
-                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-zara-black data-[state=active]:bg-transparent px-0 uppercase text-sm tracking-wider"
+                    className="rounded-none border-b-2 border-transparent data-[state=active]:border-zara-black data-[state=active]:bg-transparent px-0 uppercase text-xs tracking-widest"
                   >
                     Nueva Colección
                   </TabsTrigger>
                 </TabsList>
                 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-6">
                   <Button 
                     variant={selectedCategory === null ? "default" : "outline"}
-                    className="rounded-none text-xs tracking-wider uppercase"
+                    className="rounded-none text-xs tracking-widest uppercase h-auto px-8 py-3 border border-zara-black/10 bg-transparent text-zara-black hover:bg-zara-black hover:text-zara-white transition-colors duration-300"
                     onClick={() => setSelectedCategory(null)}
                   >
                     Todos
@@ -66,7 +65,7 @@ const Index = () => {
                     <Button
                       key={category.id}
                       variant={selectedCategory === category.name ? "default" : "outline"}
-                      className="rounded-none text-xs tracking-wider uppercase"
+                      className="rounded-none text-xs tracking-widest uppercase h-auto px-8 py-3 border border-zara-black/10 bg-transparent text-zara-black hover:bg-zara-black hover:text-zara-white transition-colors duration-300"
                       onClick={() => setSelectedCategory(category.name)}
                     >
                       {category.name}
@@ -95,10 +94,10 @@ const Index = () => {
         </div>
       </main>
       
-      <footer className="bg-zara-black py-8 mt-auto">
+      <footer className="py-12 border-t border-zara-black/10">
         <div className="container mx-auto px-4">
-          <div className="text-center text-zara-gray">
-            <p className="text-xs tracking-wider uppercase">© 2025 Fashion Stock Market · Todos los derechos reservados</p>
+          <div className="text-center text-zara-charcoal">
+            <p className="text-xs tracking-widest uppercase">© 2025 Fashion Stock Market · Todos los derechos reservados</p>
           </div>
         </div>
       </footer>

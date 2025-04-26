@@ -69,11 +69,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, listView }) => {
       className="group relative cursor-pointer"
       onClick={handleClick}
     >
-      <div className="aspect-[3/4] overflow-hidden bg-zara-lightGray">
+      <div className="aspect-[3/4] overflow-hidden bg-white">
         <img 
           src={product.imageUrl} 
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
         />
       </div>
       

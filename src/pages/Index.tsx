@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { products } from '../data/mockData';
 import ProductCard from '../components/ProductCard';
+import TrendingItems from '../components/TrendingItems';
 import { Grid2X2, List } from 'lucide-react';
 
 const Index = () => {
@@ -15,6 +16,11 @@ const Index = () => {
       <Navbar />
       
       <main className="pt-32 px-6">
+        {/* Trending Items Section */}
+        <div className="mb-12">
+          <TrendingItems />
+        </div>
+        
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
             <Grid2X2 

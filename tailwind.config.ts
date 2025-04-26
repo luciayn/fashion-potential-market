@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				montserrat: ['Montserrat', 'sans-serif'],
+				inter: ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -52,6 +57,19 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+                navy: {
+                    DEFAULT: '#1A1F2C',
+                    light: '#2A3042',
+                },
+                forest: {
+                    DEFAULT: '#2E7D32',
+                    light: '#4CAF50',
+                },
+                price: {
+                    increase: '#4CAF50',
+                    decrease: '#F44336',
+                    neutral: '#9E9E9E',
+                },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +102,21 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'price-pulse-up': {
+                    '0%, 100%': { backgroundColor: 'transparent' },
+                    '50%': { backgroundColor: 'rgba(76, 175, 80, 0.2)' }
+                },
+                'price-pulse-down': {
+                    '0%, 100%': { backgroundColor: 'transparent' },
+                    '50%': { backgroundColor: 'rgba(244, 67, 54, 0.2)' }
+                },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'price-up': 'price-pulse-up 2s ease-in-out',
+                'price-down': 'price-pulse-down 2s ease-in-out'
 			}
 		}
 	},

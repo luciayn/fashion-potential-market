@@ -28,12 +28,12 @@ const Navbar = () => {
       
       <div className="flex items-center justify-start gap-8 mt-8 overflow-x-auto text-xs tracking-widest pb-2">
         <span className="shrink-0 cursor-pointer">VER TODO</span>
-        <span className="shrink-0 cursor-pointer">MIDI | LARGOS</span>
-        <span className="shrink-0 cursor-pointer">CORTOS</span>
-        <span className="shrink-0 cursor-pointer">MONOS</span>
-        <span className="shrink-0 cursor-pointer">BLANCOS</span>
-        <span className="shrink-0 cursor-pointer">FIESTA</span>
-        <span className="shrink-0 cursor-pointer">SATINADOS</span>
+        <span className="shrink-0 cursor-pointer">CAMISETAS</span>
+        <span className="shrink-0 cursor-pointer">PANTALONES</span>
+        <span className="shrink-0 cursor-pointer">VESTIDOS</span>
+        <span className="shrink-0 cursor-pointer">CHAQUETAS</span>
+        <span className="shrink-0 cursor-pointer">ZAPATOS</span>
+        <span className="shrink-0 cursor-pointer">ACCESORIOS</span>
       </div>
     </nav>
   );

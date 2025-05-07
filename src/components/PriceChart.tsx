@@ -5,6 +5,7 @@ import { PricePoint } from '../types/types';
 
 interface PriceChartProps {
   data: PricePoint[];
+  currentPrice: number;
   className?: string;
   height?: number;
   color?: string;
@@ -12,17 +13,31 @@ interface PriceChartProps {
 
 const PriceChart: React.FC<PriceChartProps> = ({ 
   data, 
+  currentPrice,
   className = '', 
   height = 200,
   color = '#4CAF50'
 }) => {
   // Get first and last price to determine if trending up or down
   const firstPrice = data.length > 0 ? data[0].price : 0;
-  const lastPrice = data.length > 0 ? data[data.length - 1].price : 0;
-  const isIncreasing = lastPrice >= firstPrice;
+  
+  // Ensure the last price in the chart matches the current price displayed
+  let chartData = [...data];
+  if (chartData.length > 0) {
+    // Replace the last point with current price if different
+    const lastIndex = chartData.length - 1;
+    if (chartData[lastIndex].price !== currentPrice) {
+      chartData[lastIndex] = {
+        ...chartData[lastIndex],
+        price: currentPrice
+      };
+    }
+  }
+  
+  const isIncreasing = currentPrice >= firstPrice;
 
   // Filter data to show only the last 14 days
-  const recentData = data.slice(-14);
+  const recentData = chartData.slice(-14);
 
   // Format date for tooltip
   const formatDate = (dateStr: string) => {

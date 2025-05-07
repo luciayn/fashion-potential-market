@@ -60,7 +60,11 @@ const ProductDetail = () => {
           <div className="space-y-4">
             <h2 className="font-montserrat text-sm tracking-widest">EVOLUCIÓN DEL PRECIO</h2>
             <div className="h-[300px]">
-              <PriceChart data={product.priceHistory} height={300} />
+              <PriceChart 
+                data={product.priceHistory} 
+                currentPrice={product.currentPrice}
+                height={300} 
+              />
             </div>
           </div>
         </div>
